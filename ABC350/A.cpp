@@ -7,10 +7,15 @@ using ll=long long;
 using P=pair<int,int>;
 
 int main(){
-    int n;
-    cin >>n;
-    /*vector <int> v(n,d);*/
-    int ans=0;
-    cout << ans <<endl;
+    string S;
+    cin >>S;
+    string T=S.substr(3);
+    int dict = stoi(T);
+    
+    if(1 <= dict && dict <=349 && dict !=316){
+        cout << "Yes" << endl;
+    }else{
+        cout << "No" << endl;
+    }
     return 0;
 }

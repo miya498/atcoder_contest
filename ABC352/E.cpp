@@ -7,13 +7,13 @@ using ll=long long;
 using P=pair<int,int>;
 
 int main(){
-    int a;
-    cin >>a;
-    int b,c;
-    cin >>b >>c;
-    string s;
-    cin >>s;
-    
-    cout << (a+b+c) <<" " <<s <<endl;
+    int n;
+    cin >>n;
+    vector <int> v(n);
+    for(int i=0;i<n;i++){
+        cin >> v.at(i);
+    }
+    int ans=0;
+    cout << ans <<endl;
     return 0;
 }

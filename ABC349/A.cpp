@@ -7,12 +7,14 @@ using ll=long long;
 using P=pair<int,int>;
 
 int main(){
-    int a,b;
-    cin >>a >>b;
-    if((a*b)%2==0){
-        cout << "Even" << endl;
-    }else{
-        cout << "Odd" << endl;
+    int n;
+    cin >>n;
+    int ans=0;
+    vector <int> a(n-1);
+    for(int i=0;i<n-1;i++){
+        cin >> a.at(i);
+        ans+=a.at(i);
     }
+    cout <<  -ans <<endl;
     return 0;
 }

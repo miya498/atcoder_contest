@@ -7,15 +7,16 @@ using ll=long long;
 using P=pair<int,int>;
 
 int main(){
-    string s;
-    cin >>s;
-    int count=0;
-    for(int i=0;i<3;i++){
-        if(s.at(i)== '1'){
-            count++;
+    int n;
+    cin >>n;
+    for(int i=1;i<=n;i++){
+        if(i%3==0){
+            cout << 'x';
+        }else{
+            cout <<'o';
         }
     }
-
-    cout << count << endl;
+    cout << endl;
+    
     return 0;
 }
