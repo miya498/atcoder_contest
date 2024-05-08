@@ -7,14 +7,18 @@ using ll=long long;
 using P=pair<int,int>;
 
 int main(){
-    int n;
-    cin >>n;
-    vector<int> t(n);
-    vector<int> x(n);
-    vector<int> y(n);
-    
+    int n,k;
+    cin >>n >>k;
+    vector <int> p(n);
     for(int i=0;i<n;i++){
-        
+        cin >> p.at(i);
+    }
+    int ans;
+
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+            if(i<)
+        }
     }
 
     cout << ans <<endl;

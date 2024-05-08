@@ -10,36 +10,33 @@ using P=pair<int,int>;
 
 using namespace std;
 
-vector<ll> merge_ball(vector<ll> a, int size) {
-    if(size <= 1) {
-        return a;
-    } else if(a.at(size - 1) != a.at(size - 2)) {
-        return a;
-    } else{
-        ll ball = a.at(size - 1) + 1;
-        a.pop_back();
-        a.pop_back();
-        a.push_back(ball);
-        return merge_ball(a, size - 1); 
-    }
-}
-
 int main(){
     int n;
     cin >>n;
-    vector <ll> a(n);
+    vector <int> a(n);
+    vector <int> copy(0);
     for(int i=0;i<n;i++){
         cin >> a.at(i);
     }
 
-    vector <ll> copy(0);
-    ll num;
+    int num;
 
     for(int i=0;i<n;i++){
         num = a.at(i);
         copy.push_back(num);
-        copy = merge_ball(copy,copy.size());
-        /*cout << copy.size() <<endl;    */        
+        for(int j=0;j>-1;j++){
+            int size=copy.size();
+            if(size==1){
+                break;
+            }else if(copy.at(size - 1) != copy.at(size - 2)){
+                break;
+            }else{
+                int ball = copy.at(size - 1) + 1;
+                copy.pop_back();
+                copy.pop_back();
+                copy.push_back(ball);
+            } 
+        }        
     }
     cout << copy.size() <<endl;
     return 0;
