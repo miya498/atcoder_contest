@@ -1,0 +1,1 @@
+print("こんにちは","Atcoder",sep="\n")
