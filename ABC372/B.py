@@ -1,27 +1,21 @@
-def to_base_3(n):
-    if n == 0:
-        return '0'
-    
-    base_3 = ''
-    while n > 0:
-        n, remainder = divmod(n, 3)
-        base_3 = str(remainder) + base_3
-    
-    return base_3
+M = int(input())
+A = []
+#1<=A<=10
+for i in range(11):
+    cal = M%3
+    for j in range(cal):
+        A.append(i)
+    M //= 3
+    if  M <= 2:
+        for j in range(M):
+            A.append(i+1)
+        break
 
-def convert_to_format(base_3_str):
-    digit_sum = sum(int(char) for char in base_3_str)
-    
-    digit_positions = []
-    for position, digit in enumerate(reversed(base_3_str)):
-        digit = int(digit)
-        if digit > 0:
-            for _ in range(digit):
-                digit_positions.append(str(position))
-    
-    print(f"{digit_sum}")
-    print(" ".join(digit_positions))
+print(len(A))
 
-number = int(input())
-base_3_str = to_base_3(number)
-convert_to_format(base_3_str)
+for i in A:
+    print(i,end=" ")
+print()
+    
+#100->33...1 > 11...0 > 3...2 > 1...0
+#10201
