@@ -1,5 +1,0 @@
-ABC350 C sortだがindexで参照
-ABC349 B
-ABC348 C 連想配列map関数
-ABC347 B set関数の使用
-       C ふわっとしか理解できていない
