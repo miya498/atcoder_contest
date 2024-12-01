@@ -2,28 +2,15 @@ N, M = map(int, input().split())
 A = list(map(int, input().split()))
 B = list(map(int, input().split()))
 
-# B の最大値を求める
-K = max(B)
+lst = [(b_i, i) for i, b_i in enumerate(B)]
+lst.sort(reverse=True)
 
-# id 配列を初期化 (-1 で埋める)
-id = [-1] * (K + 1)
+ans = [-1] * M
+ind = 0
+for i, a in enumerate(A, 1):
+    while ind < M and lst[ind][0] >= a:
+        ans[lst[ind][1]] = i
+        ind += 1
 
-# 現在の美味しさの上限を K とする
-r = K
-
-# 美味しさごとに id を計算
-for i in range(N):
-    if A[i] <= r:
-        # A[i] 以上 r 以下の寿司を人 i + 1 が取る
-        for j in range(A[i], r + 1):
-            id[j] = i + 1
-        # r を更新
-        r = A[i] - 1
-
-# 残った寿司は誰も食べない
-for j in range(1, r + 1):
-    id[j] = -1
-
-# クエリ B に応答
-for b in B:
-    print(id[b])
+for ans_i in ans:
+    print(ans_i)
