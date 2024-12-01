@@ -1,17 +1,25 @@
-def dfs(current, n, m, results):
-    if len(current) == n:
-        results.append(current[:])
-        return
-    start = current[-1] + 10 if current else 1
-    for next_val in range(start, m + 1):
-        current.append(next_val)
-        dfs(current, n, m, results)
-        current.pop()
+def dfs():
+    global lst
+    if len(lst) == N:
+        ans.append(lst.copy())
+    elif len(lst) == 0:
+        for i in range(1,11):
+            lst.append(i)
+            dfs()
+            lst.pop()
+    else:
+        key = lst[-1]
+        maxi = M - 10*(N-len(lst)-1)
+        for i in range(key+10,maxi+1):
+            lst.append(i)
+            dfs()
+            lst.pop()
 
 N, M = map(int, input().split())
-results = []
-dfs([], N, M, results)
+ans = []
+lst = []
+dfs()
 
-print(len(results))
-for result in results:
-    print(*result)
+print(len(ans))
+for i in ans:
+    print(*i)
