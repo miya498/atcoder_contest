@@ -1,39 +1,44 @@
 from collections import deque
 
-N,X,Y = map(int,input().split())
-graph = [[] for _ in range(N)]
+def bfs(graph, start, parent):
+    q = deque([start])
+    parent[start] = -2  # 特別な値でスタート地点を表す
 
-for i in range(N-1):
-    u,v = map(int,input().split())
-    u -= 1
-    v -= 1
-    graph[u].append(v)
-    graph[v].append(u)
-
-q = deque()
-q.append(X-1)
-upper = [-1]*N
-#-2は頂点
-upper[X-1] = -2
-
-def BFS():
     while q:
-        now = q.popleft()
-        for n in graph[now]:
-            if upper[n] == -1:
-                upper[n] = now
-                q.append(n)
+        current = q.popleft()
+        for neighbor in graph[current]:
+            if parent[neighbor] == -1:  # 未訪問の頂点
+                parent[neighbor] = current
+                q.append(neighbor)
 
-BFS()
+def find_path(N, X, Y, edges):
+    # グラフを隣接リスト形式で構築
+    graph = [[] for _ in range(N)]
+    for u, v in edges:
+        u -= 1
+        v -= 1
+        graph[u].append(v)
+        graph[v].append(u)
 
-ans = []
-now = Y-1
+    # BFSで親を記録
+    parent = [-1] * N
+    bfs(graph, X - 1, parent)
 
-while upper[now] != -2:
-    ans.append(now)
-    now = upper[now]
+    # 経路復元
+    path = []
+    current = Y - 1
+    while parent[current] != -2:
+        path.append(current)
+        current = parent[current]
+    path.append(current)
 
-ans.append(now)
+    # 経路を1-indexedで返す
+    return [node + 1 for node in path[::-1]]
 
-for i in ans[::-1]:
-    print(i+1,end=" ")
+# 入力処理
+N, X, Y = map(int, input().split())
+edges = [tuple(map(int, input().split())) for _ in range(N - 1)]
+
+# 結果出力
+result = find_path(N, X, Y, edges)
+print(" ".join(map(str, result)))
